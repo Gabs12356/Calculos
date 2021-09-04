@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title></title>
+	<style type="text/css">
+		body{
+            background-image: url("gg.jpg");
+            background-repeat: no-repeat;
+            background-size:cover ;
+
+		}
+	 .calculos{
+	 	background: #000099;
+	 	color: #f0e8e6;
+	 	margin: 5px;
+	 	padding: 10px;
+	 	font-size: 20px;
+	 	text-align: center;
+	 }
+	 h1{
+	 	text-align: center;
+	 	color: #660033;
+	 	font-size: 35px;
+	 }
+     p{
+          text-align: center;
+          color: #00ffea;
+          font-size: 35px;
+     }
+     h3{
+          text-align: center;
+          color: #da1376;
+          font-size: 35px;
+     }
+     h2{
+          text-align: center;
+          color: #da1376;
+          font-size: 35px;
+     }
+	 .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+	</style>
+</head>
+<body>
+	<article>
+	<h1>PROPAGACION DE ERROR</h1>
+	
+	
+		<img src="volt.png"  class="center"width="2" height="300">
+        <h3>LA ECUACION GENERAL ES:</h3>
+        <img src="v.png"  class="center">
+        <h3>LA ECUACION DERIVADA DE R1:</h3>
+        <img src="vv.png"  class="center">
+        <h3>LA ECUACION DERIVADA DE R2:</h3>
+        <img src="vvv.png"  class="center">
+        <h3>LA ECUACION DERIVADA DE R3:</h3>
+        <img src="vvvv.png"  class="center">
+        <h3>LA ECUACION DERIVADA DE R4:</h3>
+        <img src="vvvvv.png"  class="center">
+        <h3>LA ECUACION DERIVADA DE V:</h3>
+        <img src="vvvvvv.png"  class="center">
+        <p>El circuito en forma de diamante del puente de Wheatstone, cuyo concepto fue desarrollado por 
+            Charles Wheatstone, se puede utilizar para medir con precisión valores de resistencia desconocidos,
+            o como un medio para calibrar instrumentos de medición, voltímetros, amperímetros, etc., mediante 
+            el uso de una resistencia variable y una fórmula matemática simple.
+            Aunque hoy en día los multímetros digitales proporcionan la forma más sencilla de medir una resistencia.
+            El puente de Wheatstone puede se puede utilizar para comparar una resistencia desconocida con la de una
+            resistencia conocida para determinar su valor, lo que permite medir valores muy bajos de resistencias en el rango de mili-ohmios (mΩ).
+            El circuito de puente de Wheatstone (o puente de resistencia) se puede utilizar en una serie de aplicaciones y, en la actualidad, 
+            con los amplificadores operacionales modernos podemos utilizar el circuito de puente de Wheatstone para conectar varios transductores y sensores a estos circuitos amplificadores.
+            El circuito del puente de Wheatstone no es más que dos simples arreglos en serie-paralelo de resistencias conectadas entre un terminal
+            de suministro de voltaje y tierra que producen una diferencia de voltaje cero entre las dos ramas paralelas cuando están balanceadas. Un circuito de puente 
+            de Wheatstone tiene dos terminales de entrada y dos terminales de salida que constan de cuatro resistencias configuradas en una disposición 
+            familiar similar a un diamante, como se muestra. Esto es típico de cómo se dibuja el puente de Wheatstone.
+            CONCLUSION:<br>
+             Lo que se busco en esta resolucion de ejercicio es que es importante dar cada detalle a la hora de la resolucion y en cuestion de instanciar los errores<br>
+             o valores de cada variable ser coherentes, y que las formulas ayudan al resultado<br>
+            ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++<br>
+        A continuacion se presentara resultados a partir de operacion que tengan que ver con este tema obviamente.<br>
+        *Primero al tener conocimiento de los valores de las variables de la ecuacion y sus errores se procede a <br>
+        encontrar sus derivadas de las varibles,<br>
+        *Segundo encontramos la propagacion de error<br>
+        *Tercero el  Intervalo en el que se encuentra el valor verdadero<br>
+        *Cuarto El error porcentual <br> </p>
+<script  type="text/javascript" >
+
+/*	var L=prompt("introducir el valor de L: 0.15 ");
+    var C=prompt("introducir el valor de C: 0.0000026");
+    var R=prompt("introducir el valor de R: 8");
+   
+    var LE=prompt("introducir el Error de L: 0.0005");
+    var CE=prompt("introducir el Error de C: 0.0000001");
+    var RE=prompt("introducir el Error de R: 0.0003");
+    */
+    var V=14;
+    var R1=120.6;
+    var R2=119.3;
+    var R3=121.2;
+    var R4=118.8;
+   
+    var VE=0.0005;
+    var R1E=0.00005;
+    var R2E=0.0000005;
+    var R3E=0.005;
+    var R4E=0.0005;
+
+    var VL= V*(((R1*R3)-(R2*R4))/((R1+R2)*(R3+R4)));
+    var DR1= (V*R2)/Math.pow((R1+R2),2);
+    var DR2=-(V*R1)/Math.pow((R1+R2),2);
+    var DR3=(V*R4)/Math.pow((R3+R4),2);
+    var DR4=-(V*R3)/Math.pow((R3+R4),2);
+   
+    var tv=(R1*R3)-(R2*R4)
+    var wv=(R1+R2)*(R3+R4)
+    var DV=tv/wv
+   
+
+    var DeltaF=Math.abs(DR1)*0.00005+Math.abs(DR2)*0.0000005+Math.abs(DR3)*0.005+Math.abs(DR4)*0.0005 +Math.abs(DV)*0.0005;
+    var t=VL+DeltaF;
+    var u=VL-DeltaF;
+    var Porcen=(DeltaF/Math.abs(VL))*100;
+	document.write("<div class=calculos> Para la Ecuacion original:"+VL+" </div>")
+	document.write("<div class=calculos> para la derivada de R1:"+DR1+" </div>")
+    document.write("<div class=calculos> para la derivada de R2:"+DR2+" </div>")
+    document.write("<div class=calculos> para la derivada de R3:"+DR3+" </div>")
+    document.write("<div class=calculos> para la derivada de R4:"+DR4+" </div>")
+    document.write("<div class=calculos> para la derivada de V:"+DV+" </div>")
+    document.write("<div class=calculos> El resultado de DeltaF(propagacion del error):"+DeltaF+" </div>")
+    document.write("<div class=calculos> Intervalo en el que se encuentra el valor verdadero: " +t+ " y "+u+ " </div>")
+    document.write("<div class=calculos> El error Porcentual es:"+Porcen+" </div>")
+
+    </script>
+    
+    
+	
+
+</script>
+</article>	
+	
+</body>
+</html>
